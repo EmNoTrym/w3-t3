@@ -9,10 +9,31 @@ public class ItemDisplay : MonoBehaviour
     public Item item;
 
     public Image icon;
-    public TextMeshProUGUI quantity;
-    void Start()
+    public TextMeshProUGUI quantity = null;
+
+    public CanvasGroup canvasGroup;
+
+
+    void Update()
     {
-        icon.sprite = item.icon;
-        quantity.text = item.quantity.ToString();
+        if (item != null)
+        {
+            icon.sprite = item.icon;
+            if (quantity != null)
+            {
+                if (item.quantity != 0)
+                {
+                    quantity.text = item.quantity.ToString();
+                }
+                else
+                {
+                    quantity.text = "";
+                }
+            }
+        }
+        else
+        {
+            canvasGroup.alpha = 0f;
+        }
     }
 }
